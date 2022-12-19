@@ -74,6 +74,7 @@ extern int is_sleeped;
 extern int is_ped;
 extern int ped_road;
 extern int ped_phase;
+extern int pwm;
 
 /*
  * Which road is RED during all automatic and manual modes
