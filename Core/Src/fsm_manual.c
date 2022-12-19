@@ -17,6 +17,8 @@ void button_processing_manual(){
 
 				status = AUTO_INIT;
 				set_timer_traffic(DURATION_INIT);
+				is_ped = 0;
+				set_pedestrian_light(PED_OFF);
 			}
 			set_timer_button(1000);
 		}else{
@@ -25,6 +27,34 @@ void button_processing_manual(){
 			set_timer_button(1000);
 		}
 		return;
+	}
+
+	switch (button_status[0]) {
+		case BUTTON_RELEASED:
+			if(is_button_pressed(0)){
+				is_ped = 1;
+				ped_road = TRAFFIC_ROAD_0;
+
+				button_status[0] = BUTTON_PRESSED;
+				clear_timer_button();
+			}
+
+			if(timer_button_flag == 1){
+
+			}
+			break;
+		case BUTTON_PRESSED:
+			if(!is_button_pressed(0)){
+				button_status[0] = BUTTON_RELEASED;
+				set_timer_button(DURATION_BUTTON_SLEEP);
+			}
+
+			if(is_button_long_pressed(0)){
+
+			}
+			break;
+		default:
+			break;
 	}
 
 	switch (button_status[1]) {
@@ -47,6 +77,8 @@ void button_processing_manual(){
 			if(is_button_long_pressed(1)){
 				status = AUTO_INIT;
 				set_timer_traffic(DURATION_INIT);
+				is_ped = 0;
+				set_pedestrian_light(PED_OFF);
 			}
 			break;
 		default:
@@ -133,6 +165,9 @@ void fsm_manual_run(){
 			set_traffic(TRAFFIC_ROAD_0, TRAFFIC_COLOR_RED);
 			set_traffic(TRAFFIC_ROAD_1, TRAFFIC_COLOR_GREEN);
 
+			if(is_ped == 1)
+				set_pedestrian_light(ped_road);
+
 			button_processing_manual();
 			break;
 
@@ -140,12 +175,18 @@ void fsm_manual_run(){
 			set_traffic(TRAFFIC_ROAD_0, TRAFFIC_COLOR_YELLOW);
 			set_traffic(TRAFFIC_ROAD_1, TRAFFIC_COLOR_YELLOW);
 
+			if(is_ped == 1)
+				set_pedestrian_light(ped_road);
+
 			button_processing_manual();
 
 			break;
 		case MAN_GREEN_RED:
 			set_traffic(TRAFFIC_ROAD_0, TRAFFIC_COLOR_GREEN);
 			set_traffic(TRAFFIC_ROAD_1, TRAFFIC_COLOR_RED);
+
+			if(is_ped == 1)
+				set_pedestrian_light(ped_road);
 
 			button_processing_manual();
 			break;
