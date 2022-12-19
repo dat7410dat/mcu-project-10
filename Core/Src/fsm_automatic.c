@@ -12,7 +12,7 @@ void button_processing_automatic(){
 		case BUTTON_RELEASED:
 			if(is_button_pressed(0)){
 				is_ped = 1;
-				ped_road = !red_road;
+				ped_road = TRAFFIC_ROAD_0;
 
 				button_status[0] = BUTTON_PRESSED;
 				clear_timer_button();
@@ -89,7 +89,7 @@ void button_processing_automatic(){
 				set_timer_traffic(DURATION_INIT);
 
 				is_ped = 0;
-//				ped_phase = 0;
+				ped_phase = 0;
 				clear_timer_pedestrian();
 				set_pedestrian_light(PED_OFF);
 			}
@@ -123,7 +123,7 @@ void button_processing_automatic(){
 				set_timer_traffic(DURATION_INIT);
 
 				is_ped = 0;
-//				ped_phase = 0;
+				ped_phase = 0;
 				clear_timer_pedestrian();
 				set_pedestrian_light(PED_OFF);
 			}
@@ -140,6 +140,11 @@ void fsm_automatic_run(){
 			red_road = TRAFFIC_ROAD_0;
 			button_counter = 0;
 			counter_on_7seg = 0;
+
+			is_ped = 0;
+			ped_phase = 0;
+			clear_timer_pedestrian();
+			set_pedestrian_light(PED_OFF);
 
 			for(int i = 1; i < NUM_BUTTONS; i++){
 				button_status[i] = BUTTON_RELEASED;
@@ -199,9 +204,15 @@ void fsm_automatic_run(){
 				 *
 				 */
 				switch_red_road();
-//				if (is_ped == 1){
-//					set_timer_pedestrian(3000);
-//				}
+				if (is_ped == 1){
+					if(ped_phase < 2)
+						ped_phase++;
+					else{
+						is_ped = 0;
+						ped_phase = 0;
+						set_pedestrian_light(PED_OFF);
+					}
+				}
 
 			}
 			break;

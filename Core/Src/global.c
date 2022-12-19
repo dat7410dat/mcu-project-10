@@ -19,6 +19,7 @@ int is_sleeped = 0;
 
 int is_ped = 0;
 int ped_road = 0;
-//int ped_phase = 0;
+int ped_phase = 0;
+int pwm = 0;
 
 int button_status[] = {BUTTON_RELEASED};
