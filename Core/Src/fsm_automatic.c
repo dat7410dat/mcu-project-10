@@ -89,7 +89,7 @@ void button_processing_automatic(){
 				set_timer_traffic(DURATION_INIT);
 
 				is_ped = 0;
-				ped_phase = 0;
+//				ped_phase = 0;
 				clear_timer_pedestrian();
 				set_pedestrian_light(PED_OFF);
 			}
@@ -123,7 +123,7 @@ void button_processing_automatic(){
 				set_timer_traffic(DURATION_INIT);
 
 				is_ped = 0;
-				ped_phase = 0;
+//				ped_phase = 0;
 				clear_timer_pedestrian();
 				set_pedestrian_light(PED_OFF);
 			}
@@ -199,17 +199,9 @@ void fsm_automatic_run(){
 				 *
 				 */
 				switch_red_road();
-				if (is_ped == 1){
-					set_timer_pedestrian(3000);
-					if (ped_phase == 0)
-						ped_phase++;
-					else{
-						ped_phase = 0;
-						is_ped = 0;
-						clear_timer_pedestrian();
-						set_pedestrian_light(PED_OFF);
-					}
-				}
+//				if (is_ped == 1){
+//					set_timer_pedestrian(3000);
+//				}
 
 			}
 			break;

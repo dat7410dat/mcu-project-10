@@ -22,12 +22,12 @@ void set_pedestrian_light(int road){
 			if (status <= AUTO_RED_YELLOW){
 				if (HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin) == HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin))
 				  __HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 100);
-				else if (HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin) < HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin)){
-					if (timer_ped_flag == 0)
-						__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 1000);
+//				else if (HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin) < HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin)){
+//					if (timer_ped_flag == 0)
+//						__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 1000);
 					else
 						__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 0);
-				}
+//				}
 			}
 			break;
 		case TRAFFIC_ROAD_1:
@@ -36,13 +36,13 @@ void set_pedestrian_light(int road){
 			if (status <= AUTO_RED_YELLOW){
 				if (HAL_GPIO_ReadPin(D5_GPIO_Port, D5_Pin) == HAL_GPIO_ReadPin(D4_GPIO_Port, D4_Pin))
 				  __HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 1000);
-				else if (HAL_GPIO_ReadPin(D5_GPIO_Port, D5_Pin) < HAL_GPIO_ReadPin(D4_GPIO_Port, D4_Pin)){
-					if (timer_ped_flag == 0)
-						__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 1000);
+//				else if (HAL_GPIO_ReadPin(D5_GPIO_Port, D5_Pin) < HAL_GPIO_ReadPin(D4_GPIO_Port, D4_Pin)){
+//					if (timer_ped_flag == 0)
+//						__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 1000);
 					else
 						__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 0);
 				}
-			}
+//			}
 			break;
 		default:
 			break;
