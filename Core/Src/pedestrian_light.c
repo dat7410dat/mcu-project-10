@@ -23,11 +23,11 @@ void set_pedestrian_light(int road){
 			if (status <= AUTO_RED_YELLOW){
 				if (HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin) < HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin)){
 					  __HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, pwm);
-					  pwm += 100;
+					  pwm += 10;
 				}
 				else{
 					__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1, 0);
-					pwm = 100;
+					pwm = 0;
 				}
 			}
 			break;
