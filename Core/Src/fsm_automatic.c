@@ -205,7 +205,7 @@ void fsm_automatic_run(){
 				 */
 				switch_red_road();
 				if (is_ped == 1){
-					if(ped_phase < 2)
+					if(ped_phase < 3)
 						ped_phase++;
 					else{
 						is_ped = 0;
