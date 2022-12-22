@@ -77,7 +77,7 @@ void test_IO(){
 
 char str[20];
 void display_traffic(int num){
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, sprintf(str, "!7SEG:%d, %d#\r\n",status, num), 500);
+	HAL_UART_Transmit(&huart2, (uint8_t *)str, sprintf(str, "!7SEG:%d#\r\n", num), 500);
 }
 /* USER CODE END 0 */
 
